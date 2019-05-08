@@ -1,0 +1,7 @@
+node('ansible_master') {
+     stage('ansible') {
+      git 'https://github.com/omkaramkalyan/ansible_playbooks.git'
+      sh 'ansible-playbook lamp_ubuntu.yml'
+    }
+    
+}
