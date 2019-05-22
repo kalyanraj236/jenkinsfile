@@ -1,7 +1,8 @@
-node('ansible_master') {
-     stage('ansible') {
-      git 'https://github.com/omkaramkalyan/ansible_playbooks.git'
-      sh 'ansible-playbook lamp_ubuntu.yml'
+node('slave') {
+    stage('terraform') {
+        git 'https://github.com/omkaramkalyan/chef_terraform.git'
+        sh 'cd /home/jenkins/workspace/jam'
+        sh 'terraform init '
+        sh 'terraform apply -var "accesskey=*" -var "secretkey=3*" -auto-approve .'
     }
-    
 }
